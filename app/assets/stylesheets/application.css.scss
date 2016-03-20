@@ -13,3 +13,20 @@
  *= require_tree .
  *= require_self
  */
+
+// Used to space body lower than the navbar.
+body{
+  padding-top: 100px;
+}
+
+// Used to rise height of navbar so the navbar logo image fits perfectly.
+.navbar-fixed-top .nav {
+    padding: 15px 0;
+}
+
+// Used to position navbar logo image when screen gets smaller that 767px.
+@media (max-width: 767px) {
+  .navbar-fixed-top .navbar-brand {
+      padding: 0 15px;
+  }
+}

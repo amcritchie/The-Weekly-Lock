@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>TheWeeklyLock</title>
+  <title>The Weekly Lock</title>
+  <meta name="description" content="New locks every Wednseday of the NFL Season.">
+  <meta name="keywords" content="NFL, Betting">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
+  <%= render template: "layouts/navbar" %>
+  <%= yield %>
 
 </body>
 </html>
