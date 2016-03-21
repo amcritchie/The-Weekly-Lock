@@ -30,3 +30,114 @@ body{
       padding: 0 15px;
   }
 }
+
+// Used to space pick image to make header.
+.margin-top-20{
+  margin-top: 20px;
+}
+//
+// .box:hover{
+//   background: blue; /* make this whatever you want */
+// }
+
+// .pick_thumb {
+//   transition: background-color 0.5s ease;
+//   transition: border 0.5s ease;
+//   border-radius: 8px;
+//   border: 1px solid green;
+// }
+
+// .box {
+//   transition: background-color 0.5s ease;
+//   transition: border 0.5s ease;
+//   // background-color: red;
+//   border-radius: 8px;
+//   border: 1px solid green;
+// }
+// .box:hover {
+//   background-color: lightgrey;
+//   border: 1px solid yellow;
+//
+// }
+
+$white: #ffffff;
+$black: #00171F;
+$blue1: #003459;
+$blue2: #007EA7;
+$blue3: #00A8E8;
+
+// Secondary Grey Scheme
+$grey1: #5D5E5E;
+$grey2: #CDCCCC;
+
+// Extra colors for buttons
+$red: #e84900;
+$green: #12B547;
+
+
+
+.pick_thumb {
+  // color: $blue3;
+  transition: background-color 0.5s ease,  border 0.5s ease;;
+  // transition:
+  border-radius: 8px;
+  // background-color: blue;
+
+  .result {
+    font-size: 10px;
+    color: white;
+    transition: background-color 0.5s ease,  border 0.5s ease;;
+
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+  }
+}
+
+.btn-x{
+  background-color: $blue3;
+  color: $white;
+}
+
+.pick_thumb.season{
+  border: 1px solid $blue3;
+  // background-color: $blue3;
+  // color: $white;
+  color: $blue3;
+  .result {
+    background-color: $blue3;
+    border: 1px solid $blue3;
+  }
+}
+.pick_thumb.winner{
+  border: 1px solid $green;
+  .result {
+    background-color: $green;
+    border: 1px solid $green;
+  }
+}
+.pick_thumb.loser{
+  border: 1px solid $red;
+  .result {
+    background-color: $red;
+    border: 1px solid $red;
+  }
+}
+
+.pick_thumb:hover {
+  background-color: darken($white, 10%);
+  border: 1px solid $blue3;
+  .result {
+    background-color: $blue3;
+    border: 1px solid $blue3;
+  }
+
+}
+
+// .winner{
+//   font-size: 10px;
+//   background-color: green;
+//   color: white;
+//   border-bottom-left-radius: 6px;
+//   border-bottom-right-radius: 6px;
+//   border: 1px solid green;
+// }

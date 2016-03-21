@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 20160320203722) do
   enable_extension "plpgsql"
 
   create_table "games", force: true do |t|
+    t.integer "week_id"
     t.integer "home_id"
     t.integer "away_id"
   end
@@ -33,7 +34,7 @@ ActiveRecord::Schema.define(version: 20160320203722) do
     t.integer "line_id"
     t.string  "slug"
     t.text    "notes"
-    t.boolean "main_lock"
+    t.boolean "public_lock"
   end
 
   create_table "seasons", force: true do |t|
