@@ -13,7 +13,7 @@ class Pick < ActiveRecord::Base
     picks = []
     @current_pick = self
     3.times {
-      @current_pick = @current_pick.previous_pick
+      @current_pick = @current_pick.previous_pick if @current_pick
       picks.push(@current_pick)
     }
     picks.reverse

@@ -42,6 +42,10 @@ class LogoUploader < CarrierWave::Uploader::Base
   version :large do
     process :resize_and_pad => [900, 450]
   end
+  version :large_sq do
+    # process :resize_and_pad => [500, 450]
+    process :resize_and_pad => [500, 350]
+  end
   version :medium do
     process :resize_and_pad => [250, 250]
   end

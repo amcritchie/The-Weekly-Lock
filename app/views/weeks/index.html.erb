@@ -1,0 +1,14 @@
+<!-- Pager Content -->
+<div class="container">
+
+  <div class="row">
+
+    <% @weeks.each do |week| %>
+    <div class="col-md-3 col-sm-3 col-xs-6" style="text-align: center;">
+      <a href="/sport/nfl/season/<%= @season.year %>/week/<%= week.position %>">Week <%= week.position %></a>
+    </div>
+    <% end %>
+
+    <%= render template: "layouts/footer" %>
+  </div>
+</div>
