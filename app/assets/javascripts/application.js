@@ -15,3 +15,18 @@
 //= require twitter/bootstrap
 //= require turbolinks
 //= require_tree .
+
+
+$(document).ready(function() {
+  var season = $('#season').data('year')
+  var week = $('#week').data('position')
+  $('#build_weekly_matchups').on('click', function() {
+    $.ajax({
+      method: "POST",
+      url: '/build_matchups/nfl/' + season + '/' + week,
+    })
+      .done(function( msg ) {
+        alert( "Data Saved: " + msg );
+      });
+  })
+})
