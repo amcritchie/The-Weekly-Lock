@@ -17,17 +17,25 @@ ActiveRecord::Schema.define(version: 20160320203722) do
   enable_extension "plpgsql"
 
   create_table "games", force: true do |t|
-    t.integer "week_id"
-    t.integer "home_id"
-    t.integer "away_id"
+    t.integer  "week_id"
+    t.integer  "home_id"
+    t.integer  "away_id"
+    t.integer  "location"
+    t.datetime "date"
   end
 
-  create_table "lines", force: true do |t|
+  create_table "performances", force: true do |t|
     t.integer "game_id"
     t.integer "team_id"
-    t.integer "spread"
+    t.float   "spread"
     t.integer "odds"
     t.boolean "home"
+    t.integer "q1"
+    t.integer "q2"
+    t.integer "q3"
+    t.integer "q4"
+    t.integer "ot"
+    t.integer "total"
   end
 
   create_table "picks", force: true do |t|
@@ -52,12 +60,15 @@ ActiveRecord::Schema.define(version: 20160320203722) do
     t.string  "location"
     t.string  "slug"
     t.string  "logo"
+    t.string  "sdql_id"
     t.integer "sport_id"
   end
 
   create_table "weeks", force: true do |t|
     t.integer "position"
     t.integer "season_id"
+    t.boolean "matchup_built"
+    t.boolean "results_built"
   end
 
 end

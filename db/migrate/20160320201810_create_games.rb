@@ -4,6 +4,8 @@ class CreateGames < ActiveRecord::Migration
       t.integer :week_id
       t.integer :home_id
       t.integer :away_id
+      t.integer :location
+      t.datetime :date
     end
   end
 end
