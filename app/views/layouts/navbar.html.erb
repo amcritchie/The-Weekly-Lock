@@ -20,15 +20,23 @@
           <a href="#">About</a>
         </li>
         <li>
-          <a href="#">Services</a>
-        </li>
-        <li>
-          <a href="#">Contact</a>
+          <a href="/admin/nfl">Admin</a>
         </li>
         <li>
           <a href="/sport/nfl/seasons">Seasons</a>
         </li>
+        <li>
+          <a class="btn-success" href="/sport/nfl/seasons">Record Your Lock -></a>
+        </li>
       </ul>
+      <p class="navbar-text navbar-right">
+        <% if current_user %>
+        <strong><%= current_user.name %></strong> |
+        <%= link_to "Sign out", signout_path, id: "sign_out" %>
+        <% else %>
+        <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_id" %>
+        <% end %>
+      </p>
     </div>
     <!-- /.navbar-collapse -->
   </div>

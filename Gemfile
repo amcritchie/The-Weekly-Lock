@@ -46,3 +46,7 @@ gem "twitter-bootstrap-rails"
 # Carrier Wave
 gem 'rmagick', :require => false
 gem "carrierwave"
+
+gem "figaro"
+
+gem 'omniauth-facebook'

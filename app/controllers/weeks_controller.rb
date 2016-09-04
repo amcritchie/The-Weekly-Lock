@@ -1,5 +1,9 @@
 class WeeksController < ApplicationController
 
+  def pick_latest
+    @week = Week.latest_week
+  end
+
   def index
     @season = params[:year] ? Season.find_by_year(params[:year]) : Season.last
     @weeks = @season.weeks

@@ -1,0 +1,85 @@
+<div class="container">
+
+  <div class="hidden">
+    <div id="season" data-year="2015"></div>
+  </div>
+
+  <div class="container">
+
+    <div class="input-group"> <span class="input-group-addon">Filter</span>
+      <input id="filter" type="text" class="form-control" placeholder="Type here...">
+    </div>
+
+    <ul class="flex-container searchable">
+      <% @week.games.each do |game| %>
+      <li class="flex-item" style="position: relative;">
+        <br>
+        <div style="position: absolute; top: 30px; text-align: center; width: 100%;">
+          @
+        </div>
+        <div class="select_away" style="width: 50%; height: 100%; float: right; cursor: pointer;">
+          <img src="<%= game.away_team.logo %>" alt="Description" height="32" />
+          <h6>
+            <%= game.away_team.name %><br>
+            <%= game.away_performance.present_record.split.join(' - ') %>
+            <hr>
+            <%= game.away_performance.spread %>
+            <% if game.away_performance.total%>
+              <hr>
+              <%= game.away_performance.total %>
+            <% end %>
+          </h6>
+          <div class="gradient home_gradient" style="position: absolute; bottom: 0; width: 50%; height: 100%;  padding: 4px;">
+            <h5><%= game.home_team.location %><br>
+            <%= game.home_team.name %></h5>
+            <p style="font-size: 12px;">
+            <% if game.home_performance.spread == 0 %>
+              To beat the <%= game.away_team.location %> <%= game.away_team.name %>.
+            <% elsif game.home_performance.spread < 0 %>
+              To beat the <%= game.away_team.location %> <%= game.away_team.name %> by <%= game.away_performance.spread %> point<%= 's' if game.away_performance.spread.to_int != 1 %>.
+            <% else %>
+              To hold the <%= game.away_team.location %> <%= game.away_team.name %> to <%= game.home_performance.spread %> point<%= 's' if game.home_performance.spread.to_int != 1 %>.
+            <% end %>
+            </p>
+          </div>
+        </div>
+
+        <div class="select_home" style="width: 50%; height: 100%; float: right; cursor: pointer;">
+          <img src="<%= game.home_team.logo %>" alt="Description" height="32" />
+          <h6>
+            <%= game.home_team.name %><br>
+            <%= game.home_performance.present_record.split.join(' - ') %>
+            <hr>
+            <%= game.home_performance.spread %>
+            <% if game.home_performance.total%>
+              <hr>
+              <%= game.home_performance.total %>
+            <% end %>
+          </h6>
+
+          <div class="gradient away_gradient" style="position: absolute; bottom: 0; width: 50%; height: 100%; padding: 4px;">
+            <h5><%= game.away_team.location %><br>
+            <%= game.away_team.name %></h5>
+            <p style="font-size: 12px;">
+            <% if game.away_performance.spread == 0 %>
+              To beat the <%= game.home_team.location %> <%= game.home_team.name %>.
+            <% elsif game.away_performance.spread < 0 %>
+              To beat the <%= game.home_team.location %> <%= game.home_team.name %> by <%= game.home_performance.spread.to_int %> point<%= 's' if game.home_performance.spread.to_int != 1 %>.
+            <% else %>
+              To hold the <%= game.home_team.location %> <%= game.home_team.name %> to <%= game.away_performance.spread.to_int %> point<%= 's' if game.away_performance.spread.to_int != 1 %>.
+            <% end %>
+            </p>
+          </div>
+        </div>
+        <hr>
+        <hr>
+        <hr>
+
+        <a class="hidden" href="/admin/nfl/<%= @week.season.year %>/<%= @week.position %>/<%= game.slug %>" target="_blank" class="background">
+          Game
+        </a>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
