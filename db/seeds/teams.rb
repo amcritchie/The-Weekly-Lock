@@ -1,5 +1,5 @@
 # AFC West
-@broncos = Team.create(sport_id: @nfl.id, name: 'Broncos', sdql_id: 'Broncos', location: 'Denver', slug: '', logo: Rails.root.join("app/assets/images/nfl/afc/west/broncos.png").open)
+@broncos = Team.create(sport_id: @nfl.id, name: 'Broncos', sdql_id: 'Broncos', location: 'Denver', dark_color: '#002244', light_color: '#fb4f14', slug: '', logo: Rails.root.join("app/assets/images/nfl/afc/west/broncos.png").open)
 @raiders = Team.create(sport_id: @nfl.id, name: 'Raiders', sdql_id: 'Raiders', location: 'Oakland', slug: '', logo: Rails.root.join("app/assets/images/nfl/afc/west/raiders.gif").open)
 @chargers = Team.create(sport_id: @nfl.id, name: 'Chargers', sdql_id: 'Chargers', location: 'San Diego', slug: '', logo: Rails.root.join("app/assets/images/nfl/afc/west/chargers.png").open)
 @cheifs = Team.create(sport_id: @nfl.id, name: 'Chiefs', sdql_id: 'Chiefs', location: 'Kansas City', slug: '', logo: Rails.root.join("app/assets/images/nfl/afc/west/chiefs.png").open)
@@ -13,7 +13,7 @@
 # AFC North
 @bengals = Team.create(sport_id: @nfl.id, name: 'Bengals', sdql_id: 'Bengals', location: 'Cincinnati', slug: '', logo: Rails.root.join("app/assets/images/nfl/afc/north/bengals.gif").open)
 @steelers = Team.create(sport_id: @nfl.id, name: 'Steelers', sdql_id: 'Steelers', location: 'Pittsburgh', slug: '', logo: Rails.root.join("app/assets/images/nfl/afc/north/steelers.png").open)
-@ravens = Team.create(sport_id: @nfl.id, name: 'Ravens', sdql_id: 'Ravens', location: 'Baltimore', slug: '', logo: Rails.root.join("app/assets/images/nfl/afc/north/ravens.png").open)
+@ravens = Team.create(sport_id: @nfl.id, name: 'Ravens', sdql_id: 'Ravens', location: 'Baltimore', dark_color: '#241773', light_color: '#9E7C0C', slug: '', logo: Rails.root.join("app/assets/images/nfl/afc/north/ravens.png").open)
 @browns = Team.create(sport_id: @nfl.id, name: 'Browns', sdql_id: 'Browns', location: 'Cleveland', slug: '', logo: Rails.root.join("app/assets/images/nfl/afc/north/browns.png").open)
 
 # AFC South
