@@ -1,0 +1,34 @@
+.game-box{
+  position: relative;
+
+  .game-at {
+    top: 30px;
+    width: 100%;
+    position: absolute;
+    text-align: center;
+    pointer-events: none;
+  }
+
+  .game-select-performance {
+    width: 50%;
+    height: 100%;
+    float: right;
+    cursor: pointer;
+
+    .game-logo {
+      height: 32px;
+    }
+
+    .game-performance-gradient {
+      position: absolute;
+      bottom: 0;
+      width: 50%;
+      height: 100%;
+      padding: 4px;
+
+      p {
+        font-size: 12px;
+      }
+    }
+  }
+}

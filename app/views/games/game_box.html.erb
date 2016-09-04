@@ -1,0 +1,63 @@
+<br>
+<div class="game-at">@</div>
+<div class="game-select-performance game-select-away">
+  <img class="game-logo" src="<%= game.away_team.logo %>" alt="Description">
+  <h6>
+    <%= game.away_team.name %><br>
+    <%= game.away_performance.present_record.split.join(' - ') %>
+    <hr>
+    <%= game.away_performance.spread %>
+    <% if game.away_performance.total%>
+      <hr>
+      <%= game.away_performance.total %>
+    <% end %>
+  </h6>
+  <div class="gradient game-performance-gradient game-home-gradient">
+    <h5><%= game.home_team.location %><br>
+    <%= game.home_team.name %></h5>
+    <p>
+    <% if game.home_performance.spread == 0 %>
+      To beat the <%= game.away_team.location %> <%= game.away_team.name %>.
+    <% elsif game.home_performance.spread < 0 %>
+      To beat the <%= game.away_team.location %> <%= game.away_team.name %> by <%= game.away_performance.spread %> point<%= 's' if game.away_performance.spread.to_int != 1 %>.
+    <% else %>
+      To hold the <%= game.away_team.location %> <%= game.away_team.name %> to <%= game.home_performance.spread %> point<%= 's' if game.home_performance.spread.to_int != 1 %>.
+    <% end %>
+    </p>
+  </div>
+</div>
+
+<div class="game-select-performance game-select-home">
+  <img class="game-logo" src="<%= game.home_team.logo %>" alt="Description">
+  <h6>
+    <%= game.home_team.name %><br>
+    <%= game.home_performance.present_record.split.join(' - ') %>
+    <hr>
+    <%= game.home_performance.spread %>
+    <% if game.home_performance.total%>
+      <hr>
+      <%= game.home_performance.total %>
+    <% end %>
+  </h6>
+
+  <div class="gradient  game-performance-gradient game-away-gradient">
+    <h5><%= game.away_team.location %><br>
+    <%= game.away_team.name %></h5>
+    <p>
+    <% if game.away_performance.spread == 0 %>
+      To beat the <%= game.home_team.location %> <%= game.home_team.name %>.
+    <% elsif game.away_performance.spread < 0 %>
+      To beat the <%= game.home_team.location %> <%= game.home_team.name %> by <%= game.home_performance.spread %> point<%= 's' if game.home_performance.spread.to_int != 1 %>.
+    <% else %>
+      To hold the <%= game.home_team.location %> <%= game.home_team.name %> to <%= game.away_performance.spread %> point<%= 's' if game.away_performance.spread.to_int != 1 %>.
+    <% end %>
+    </p>
+  </div>
+</div>
+<hr>
+<hr>
+<hr>
+
+<a class="hidden" href="/admin/nfl/<%= @week.season.year %>/<%= @week.position %>/<%= game.slug %>" target="_blank" class="background">
+  Game
+</a>
