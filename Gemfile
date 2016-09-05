@@ -53,3 +53,8 @@ gem "figaro"
 
 # Omniauth
 gem 'omniauth-facebook'
+# Use unicorn as the app server
+gem 'unicorn'
+
+# Use Capistrano for deployment
+gem 'capistrano', '~> 2.x', require: false, group: :development
