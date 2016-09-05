@@ -53,6 +53,8 @@ gem "figaro"
 
 # Omniauth
 gem 'omniauth-facebook'
+gem "omniauth-google-oauth2"
+
 # Use unicorn as the app server
 gem 'unicorn'
 
