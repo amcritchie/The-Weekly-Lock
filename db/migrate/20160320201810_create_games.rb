@@ -5,6 +5,7 @@ class CreateGames < ActiveRecord::Migration
       t.integer :home_id
       t.integer :away_id
       t.integer :location
+      t.string :slug
       t.datetime :date
     end
   end
