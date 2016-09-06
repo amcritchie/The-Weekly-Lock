@@ -3,6 +3,7 @@ class CreatePerformances < ActiveRecord::Migration
     create_table :performances do |t|
       t.integer :game_id
       t.integer :team_id
+      t.string :present_record
       t.float :spread
       t.integer :odds
       t.boolean :home
@@ -12,6 +13,7 @@ class CreatePerformances < ActiveRecord::Migration
       t.integer :q4
       t.integer :ot
       t.integer :total
+      t.string :result
     end
   end
 end
