@@ -84,10 +84,23 @@ namespace :deploy do
 
   # other stuff...
   namespace :rake do
-    desc "Invoke rake task"
-    task :invoke do
-      run "cd #{deploy_to}/current"
-      run "bundle exec rake #{ENV['task']} RAILS_ENV=#{rails_env}"
+    namespace :db do
+      %w[create migrate reset rollback seed setup].each do |command|
+        desc "Rake db:#{command}"
+        task command, roles: :app, except: {no_release: true} do
+          run "cd #{deploy_to}/current"
+          run "bundle exec rake db:#{ENV['task']} RAILS_ENV=#{rails_env}"
+        end
+      end
+    end
+    namespace :assets do
+      %w[precompile clean].each do |command|
+        desc "Rake assets:#{command}"
+        task command, roles: :app, except: {no_release: true} do
+          run "cd #{deploy_to}/current"
+          run "bundle exec rake assets:#{ENV['task']} RAILS_ENV=#{rails_env}"
+        end
+      end
     end
   end
 
