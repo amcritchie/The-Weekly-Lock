@@ -1,0 +1,12 @@
+<div class="container">
+
+  <div class="col-sm-6 col-xs-12">
+    <h2><%= @game.away_team.name %></h2>
+    <img style="display: inline;" class="img-responsive img-rounded" src="<%=  @game.away_team.logo_url(:medium) %>" alt="">
+  </div>
+  <div class="col-sm-6 col-xs-12">
+    <h2><%= @game.home_team.name %></h2>
+    <img style="display: inline;" class="img-responsive img-rounded" src="<%=  @game.home_team.logo_url(:medium) %>" alt="">
+  </div>
+
+</div>
