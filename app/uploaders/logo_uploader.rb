@@ -3,7 +3,7 @@
 class LogoUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
-  include CarrierWave::RMagick
+  # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
@@ -36,25 +36,25 @@ class LogoUploader < CarrierWave::Uploader::Base
   # end
 
   # Create different versions of your uploaded files:
-  version :largex do
-    process :resize_and_pad => [900, 350]
-  end
-  version :large do
-    process :resize_and_pad => [900, 450]
-  end
-  version :large_sq do
-    # process :resize_and_pad => [500, 450]
-    process :resize_and_pad => [500, 350]
-  end
-  version :medium do
-    process :resize_and_pad => [250, 250]
-  end
-  version :thumb do
-    process :resize_and_pad => [100, 100]
-  end
-  version :micro do
-    process :resize_and_pad => [40, 30]
-  end
+  # version :largex do
+  #   process :resize_and_pad => [900, 350]
+  # end
+  # version :large do
+  #   process :resize_and_pad => [900, 450]
+  # end
+  # version :large_sq do
+  #   # process :resize_and_pad => [500, 450]
+  #   process :resize_and_pad => [500, 350]
+  # end
+  # version :medium do
+  #   process :resize_and_pad => [250, 250]
+  # end
+  # version :thumb do
+  #   process :resize_and_pad => [100, 100]
+  # end
+  # version :micro do
+  #   process :resize_and_pad => [40, 30]
+  # end
   # Process files as they are uploaded:
   # process :scale => [200, 300]
   #
