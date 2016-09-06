@@ -1,6 +1,6 @@
 require "bundler/capistrano"
 
-server "162.243.226.234", :web, :app, :db, primary: true
+server "107.170.240.105", :web, :app, :db, primary: true
 
 set :application, "the_weekly_lock"
 set :user, "deployer"
