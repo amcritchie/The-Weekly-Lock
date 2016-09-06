@@ -76,12 +76,19 @@ namespace :deploy do
 
     task :symlink, roles: :web do
       run ("rm -rf #{latest_release}/public/assets &&
-            mkdir -p #{latest_release}/public &&
-            mkdir -p #{shared_path}/assets &&
-            ln -s #{shared_path}/assets #{latest_release}/public/assets")
+      mkdir -p #{latest_release}/public &&
+      mkdir -p #{shared_path}/assets &&
+      ln -s #{shared_path}/assets #{latest_release}/public/assets")
     end
   end
 
   # other stuff...
+  namespace :rake do
+    desc "Invoke rake task"
+    task :invoke do
+      run "cd #{deploy_to}/current"
+      run "bundle exec rake #{ENV['task']} RAILS_ENV=#{rails_env}"
+    end
+  end
 
 end
