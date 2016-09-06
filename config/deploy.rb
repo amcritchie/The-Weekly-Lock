@@ -49,3 +49,20 @@ namespace :deploy do
   end
   before "deploy", "deploy:check_revision"
 end
+
+namespace :deploy do
+  desc "reload the database with seed data"
+  task :seed do
+    run "cd #{current_path}; bundle exec rake db:seed RAILS_ENV=#{rails_env}"
+  end
+end
+
+# Capistrano::Configuration.instance(:must_exist).load do
+  namespace :rails do
+    desc "Open the rails console on one of the remote servers"
+    task :console, :roles => :app do
+      hostname = find_servers_for_task(current_task).first
+      exec "ssh -l #{user} #{hostname} -t 'source ~/.profile && #{current_path}/script/rails c #{rails_env}'"
+    end
+  end
+# end
