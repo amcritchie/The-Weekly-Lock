@@ -3,11 +3,14 @@
 class LogoUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
-  # include CarrierWave::RMagick
+  include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
-  storage :file
+  storage :fog
+
+  include CarrierWave::MimeTypes
+  process :set_content_type
   # storage :fog
 
   # Override the directory where uploaded files will be stored.
@@ -24,7 +27,7 @@ class LogoUploader < CarrierWave::Uploader::Base
     # "/images/fallback/" + [version_name, "default.png"].compact.join('_')
     # "/assets/iron_dragon.png"
     # '/assets/seed_images/iron_dragon.png'
-    '/assets/images/nfl/bills.png'
+    Rails.root.join('db', 'seeds', 'nfl/afc/west/broncos.png').open
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
