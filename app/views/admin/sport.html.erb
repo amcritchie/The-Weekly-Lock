@@ -4,9 +4,9 @@
     <div id="season" data-year="2015"></div>
   </div>
 
-  <%= image_tag "nfl/afc/west/broncos.png" %>
-  <%= asset_path "nfl/afc/west/broncos.png" %>
-
+  <!-- <%= image_tag "nfl/afc/west/broncos.png" %>
+  <%= asset_path "nfl/afc/west/broncos.png" %> -->
+  <img class="game-logo" src="<%= Team.first.logo %>" alt="Description" height="32">
   <div class="container">
     <h2>NFL Seasons</h2>
     <table class="table table-hover table-condensed">
