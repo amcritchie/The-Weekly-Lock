@@ -1,6 +1,6 @@
 require "bundler/capistrano"
 
-server "107.170.240.105", :web, :app, :db, primary: true
+server "192.241.221.175", :web, :app, :db, primary: true
 
 set :application, "the_weekly_lock"
 set :user, "deployer"
@@ -52,6 +52,14 @@ end
 
 namespace :deploy do
   desc "reload the database with seed data"
+  # rake db:drop db:create db:migrate db:seed
+
+  task :full do
+    run "cd #{current_path}; bundle exec rake db:reset RAILS_ENV=#{rails_env}"
+    run "cd #{current_path}; bundle exec rake db:create RAILS_ENV=#{rails_env}"
+    run "cd #{current_path}; bundle exec rake db:migrate RAILS_ENV=#{rails_env}"
+    run "cd #{current_path}; bundle exec rake db:seed RAILS_ENV=#{rails_env}"
+  end
   task :seed do
     run "cd #{current_path}; bundle exec rake db:seed RAILS_ENV=#{rails_env}"
   end

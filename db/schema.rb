@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20160904023225) do
   end
 
   create_table "picks", force: true do |t|
+    t.integer "user_id"
     t.integer "performance_id"
     t.string  "slug"
     t.text    "notes"
