@@ -4,6 +4,8 @@
     <div id="season" data-year="2015"></div>
   </div>
 
+  <h1>|<%= Figaro.env.aws_bucket %>|</h1>
+
   <!-- <%= image_tag "nfl/afc/west/broncos.png" %>
   <%= asset_path "nfl/afc/west/broncos.png" %> -->
   <img class="game-logo" src="<%= Team.first.logo %>" alt="Description" height="32">
