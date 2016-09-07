@@ -49,7 +49,7 @@ gem "twitter-bootstrap-rails"
 # Carrier Wave
 gem 'rmagick', :require => false
 gem "carrierwave"
-# gem 'fog', '~> 1.24.0'
+gem 'fog', '~> 1.24.0'
 
 # Figaro
 gem "figaro"
