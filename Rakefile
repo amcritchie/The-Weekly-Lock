@@ -7,6 +7,8 @@ Rails.application.load_tasks
 
 task :build_nfl_teams => :environment do
 
+  @nfl = Sport.find_by_slug('nfl')
+  
   # AFC West
   @broncos = Team.create(sport_id: @nfl.id, name: 'Broncos', sdql_id: 'Broncos', location: 'Denver', dark_color: '#002244', light_color: '#fb4f14', slug: '', logo: Rails.root.join('db', 'seeds', 'nfl/afc/west/broncos.png').open)
   @raiders = Team.create(sport_id: @nfl.id, name: 'Raiders', sdql_id: 'Raiders', location: 'Oakland', slug: '', logo: Rails.root.join('db', 'seeds', 'nfl/afc/west/raiders.gif').open)
