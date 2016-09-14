@@ -10,7 +10,8 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="/">
-        <img src="http://placehold.it/150x50&text=Logo" alt="">
+        <h4>The Weekly <br>Lock <i class="fa fa-lock"></i></h4>
+        <!-- <img src="http://placehold.it/150x50&text=Logo" alt=""> -->
       </a>
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -26,7 +27,7 @@
           <a href="/sport/nfl/seasons">Seasons</a>
         </li>
         <li>
-          <a class="btn-success" href="/sport/nfl/seasons">Record Your Lock -></a>
+          <a href="/">Latest Pick</a>
         </li>
       </ul>
       <p class="navbar-text navbar-right">
@@ -34,7 +35,8 @@
         <strong><%= current_user.name %></strong> |
         <%= link_to "Sign out", signout_path, id: "sign_out" %>
         <% else %>
-        <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_id" %>
+        <a href="/auth/facebook" title="Facebook" class="btn btn-facebook btn-lg"><i class="fa fa-facebook fa-fw"></i> Sign In</a>
+        <!-- <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_id" %> -->
         <% end %>
       </p>
     </div>

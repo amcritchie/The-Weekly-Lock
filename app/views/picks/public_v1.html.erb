@@ -15,18 +15,23 @@
 
     <% @last_three.each_with_index do |pick, index| %>
     <div class="col-md-3 col-sm-3 col-xs-6 <%= (index != 2) ? 'hidden-xs' : '' %>" style="text-align: center;">
+      <% if pick %>
+      <a class="remove-decoration" href="/sport/nfl/season/2015/week/<%= pick.performance.game.week.position %>/public">
       <div class="box pick_thumb <%= (index == 1) ? 'loser' : 'winner' %>">
-        <h5>Week <%= pick.line.game.week.position %></h5>
+        <h5>
+          Week <%= pick.performance.game.week.position %>
+          <img style="display: inline;" class="img-responsive img-rounded" src="<%= pick.performance.team.logo_url(:micro) %>" alt="">
+          <span> ( <%= pick.performance.spread %> )</span>
+        </h5>
         <div>
-          <div stylec="font-size: 10px;">
-            <img style="display: inline;" class="img-responsive img-rounded" src="<%= pick.line.team.logo_url(:micro) %>" alt="">
-            <span> <%= pick.line.spread/10.0 %></span>
-          </div>
           <div class="result">
             <%= (index == 1) ? 'Loss' : 'Win' %>
           </div>
         </div>
       </div>
+      </a>
+      <% end %>
+
     </div>
     <% end %>
   </div>
@@ -34,12 +39,12 @@
   <!-- Heading Row -->
   <div class="row">
     <div class="col-md-4 margin-top-20">
-      <img class="img-responsive img-rounded" src="<%= @pick.line.team.logo_url(:large) %>" alt="">
+      <img class="img-responsive img-rounded" src="<%= @pick.performance.team.logo_url(:large_sq) %>" alt="">
       <!-- <img class="img-responsive img-rounded" src="http://placehold.it/900x350" alt=""> -->
     </div>
     <!-- /.col-md-8 -->
     <div class="col-md-8 col-sm-6x">
-      <h1>Lock of Week 5, <%= @pick.line.team.name %> <%= @pick.line.spread/10.0 %></h1>
+      <h1>Lock of Week <%= @pick.performance.game.week.position %>, <%= @pick.performance.team.name %> <%= @pick.performance.spread %></h1>
       <h4><%= @game.away_team.name %> @ <%= @game.home_team.name %></h4>
       <!-- <h2>Lock of Week 5, Broncos -22.5</h2> -->
       <!-- <h1>Business Name or Tagline</h1> -->

@@ -13,7 +13,7 @@
     <ul class="flex-container searchable">
       <% @week.games.each do |game| %>
       <li class="flex-item game-box">
-        <%= render :template => "games/game_box", :locals => { :game => game } %>
+        <%= render :template => "games/game_box", :locals => { :game => game, show_result: false, show_spread: true } %>
       </li>
       <% end %>
     </ul>

@@ -13,7 +13,8 @@ class CreatePerformances < ActiveRecord::Migration
       t.integer :q4
       t.integer :ot
       t.integer :total
-      t.string :result
+      t.string :game_result
+      t.string :spread_result
     end
   end
 end

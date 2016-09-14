@@ -1,0 +1,12 @@
+<div class="hidden">
+  <div id="season" data-year="<%= @season.year %>"></div>
+  <div id="week" data-position="<%= @week.position %>"></div>
+</div>
+<!-- Pager Content -->
+<div class="container">
+
+  <div class="game-box" style="width: 30d0px;">
+    <%= render :template => "games/game_box", :locals => { game: @game, show_result: true, show_spread: true } %>
+  </div>
+
+</div>

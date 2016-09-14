@@ -9,14 +9,66 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
       <h4>Actions</h4>
       <a id="build_weekly_matchups" class="btn btn-success">Build Matchups</a>
+      <a id="build_weekly_results" class="btn btn-primary">Build Results</a>
     </div>
   </div>
   <div class="row">
     <% @games.each do |game| %>
-    <div class="col-md-3 col-sm-3 col-xs-6" style="text-align: center;">
-      <h4><%= game.away_team.name %> @ <%= game.home_team.name %></h4>
+      <div class="col-md-6 col-sm-12 col-xs-12">
+      <a href="/sport/nfl/season/<%= @season.year %>/week/<%= @week.position %>/game/<%= game.slug %>">Break Down</a><br>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Team</th>
+            <th>Spread</th>
+            <th>Odds</th>
+            <th>Q1</th>
+            <th>Q2</th>
+            <th>Q3</th>
+            <th>Q4</th>
+            <th>OT</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="<%= game.home_spread_result_class %>">
+            <td><b>H:</b> <%= game.home_team.name %></td>
+            <td><%= game.home_performance.spread %></td>
+            <td><%= game.home_performance.odds %></td>
+            <td><%= game.home_performance.q1 %></td>
+            <td><%= game.home_performance.q2 %></td>
+            <td><%= game.home_performance.q3 %></td>
+            <td><%= game.home_performance.q4 %></td>
+            <td><%= game.home_performance.ot %></td>
+            <td><%= game.home_performance.total %></td>
+          </tr>
+          </tr>
+          <tr class="<%= game.away_spread_result_class %>">
+            <td><b>A:</b> <%= game.away_team.name %></td>
+            <td><%= game.away_performance.spread %></td>
+            <td><%= game.away_performance.odds %></td>
+            <td><%= game.away_performance.q1 %></td>
+            <td><%= game.away_performance.q2 %></td>
+            <td><%= game.away_performance.q3 %></td>
+            <td><%= game.away_performance.q4 %></td>
+            <td><%= game.away_performance.ot %></td>
+            <td><%= game.away_performance.total %></td>
+          </tr>
+        </tbody>
+      </table>
+      <% puts "==1" * 80 %>
+      <% puts game.home_performance.id %>
+      <% puts "=||***||=2" * 800 %>
+      <% puts game.home_performance.id %>
+      <% puts game.home_performance %>
+      <% puts game.home_performance.the_score %>
+      <% puts "=||***||=3" * 800 %>
+      <%= puts game.home_performance.the_score[:home][:first_half_sd] %>
+
+
     </div>
     <% end %>
+
   </div>
   <%= render template: "layouts/footer" %>
 </div>

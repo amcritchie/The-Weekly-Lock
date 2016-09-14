@@ -15,9 +15,17 @@ class WeeksController < ApplicationController
   end
 
   def build_matchups
-    @week = params[:week]
-    @season = params[:season]
+    @season = Season.find_by_year(params[:year])
+    @week = @season.weeks.find_by_position(params[:week])
     Sdql.build_weeks_nfl_matchups(@season, @week)
+    render :json => {message: 'success'}
+  end
+
+  def build_results
+    @season = Season.find_by_year(params[:year])
+    @week = @season.weeks.find_by_position(params[:week])
+
+    Sdql.build_weeks_nfl_results(@season, @week)
     render :json => {message: 'success'}
   end
 end

@@ -1,8 +1,9 @@
 class Pick < ActiveRecord::Base
-  belongs_to :line
+  belongs_to :user
+  belongs_to :performance
 
   def game
-    self.line.game
+    self.performance.game
   end
 
   def previous_pick
@@ -17,5 +18,20 @@ class Pick < ActiveRecord::Base
       picks.push(@current_pick)
     }
     picks.reverse
+  end
+
+  def self.record
+    record = {wins: 0, losses: 0, pushes: 0}
+    all.each do |pick|
+      result = pick.performance.spread_result
+      if result == 'win'
+        record[:wins] += 1
+      elsif result == 'loss'
+        record[:losses] += 1
+      elsif result == 'push'
+        record[:pushes] += 1
+      end
+    end
+    record
   end
 end

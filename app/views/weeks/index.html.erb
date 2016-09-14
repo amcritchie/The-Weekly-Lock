@@ -4,11 +4,41 @@
   <div class="row">
 
     <% @weeks.each do |week| %>
-    <div class="col-md-3 col-sm-3 col-xs-6" style="text-align: center;">
-      <a href="/sport/nfl/season/<%= @season.year %>/week/<%= week.position %>">Week <%= week.position %></a>
-    </div>
+    <!-- <div class="col-md-3 col-sm-3 col-xs-6" style="text-align: center;"> -->
+    <a href="/sport/nfl/season/<%= @season.year %>/week/<%= week.position %>">Week <%= week.position %></a><br>
+    <!-- </div> -->
     <% end %>
 
     <%= render template: "layouts/footer" %>
   </div>
+</div>
+
+
+<div class="hidden">
+  <div id="season" data-year="<%= @season.year %>"></div>
+</div>
+<!-- Pager Content -->
+<div class="container">
+
+  <div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <h4>Actions</h4>
+      <a id="build_seasons_matchups" class="btn btn-success">Build Matchups</a>
+      <a id="build_seasons_results" class="btn btn-success">Build Results</a>
+      <!-- <a id="build_seasons_results" class="btn btn-primary">Build Results</a> -->
+    </div>
+  </div>
+  <div class="row">
+
+    <% @weeks.each do |week| %>
+
+    <div class="col-md-6 col-sm-12 col-xs-12">
+      <a href="/sport/nfl/season/<%= @season.year %>/week/<%= week.position %>">Week <%= week.position %></a><br>
+    </div>
+
+    <% end %>
+
+
+  </div>
+  <%= render template: "layouts/footer" %>
 </div>

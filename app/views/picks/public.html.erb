@@ -1,0 +1,162 @@
+<!-- Pager Content -->
+<div class="container">
+
+  <div class="row">
+
+    <div class="col-md-3 col-sm-3 col-xs-6" style="text-align: center;">
+      <a class="remove-decoration" href="/sport/nfl/season/<%= @pick.performance.game.week.season.year %>/public_record">
+
+      <div class="box pick_thumb season">
+        <!-- Season Picks -->
+        <!-- <h5>This Season's Picks</h5> -->
+        <h3>Previous Picks</h3>
+        <h4><%= @seasons_picks.record.values.join(' - ') %></h4>
+
+      </div>
+      </a>
+    </div>
+
+    <% @last_three.each_with_index do |pick, index| %>
+    <div class="col-md-3 col-sm-3 col-xs-6 <%= (index != 2) ? 'hidden-xs' : '' %>" style="text-align: center;">
+      <% if pick %>
+      <a class="remove-decoration" href="/sport/nfl/season/<%= pick.performance.game.week.season.year %>/week/<%= pick.performance.game.week.position %>/<%= pick.performance.game.slug %>">
+        <div class="box pick_thumb <%= (index == 1) ? 'loser' : 'winner' %>">
+          <div class="inline" style="margin-top: 5px;">
+            <div class="pull-left">
+              <img height="60" style="display: inline;" class="img-responsive- img-rounded" src="<%= pick.performance.team.logo %>" alt="">
+            </div>
+            <div class="pull-right" style="margin-left: 10px;">
+              <h5>Week <%= pick.performance.game.week.position %></h5>
+              <h6>( <%= pick.performance.spread %> )</h6>
+            </div>
+          </div>
+
+
+
+          <div>
+            <div class="result">
+              <%= (index == 1) ? 'Loss' : 'Win' %>
+            </div>
+          </div>
+
+        </div>
+      </a>
+      <% end %>
+
+    </div>
+    <% end %>
+
+
+
+
+  </div>
+  <hr>
+
+  <!-- Heading Row -->
+  <div class="row">
+    <div class="col-md-12 col-sm-8 col-xs-12">
+      <% if current_user %>
+        <a class="btn btn-primary btn-lg visible-xs" href="/pick_latest">Make your Lock!</a>
+      <% else %>
+        <a class="btn btn-primary btn-lg visible-xs" data-toggle="modal" data-target="#authentication-options">Make your Lock!</a>
+      <% end %>
+      <h1>Lock of Week <%= @pick.performance.game.week.position %>, <%= @pick.performance.team.name %> <%= @pick.performance.spread %></h1>
+    </div>
+    <div class="visible-sm col-sm-4">
+      <% if current_user %>
+        <a class="btn btn-primary btn-lg landing-action-item pull-right margin-top-20" href="/pick_latest">Make your Lock!</a>
+      <% else %>
+        <a class="btn btn-primary btn-lg landing-action-item pull-right margin-top-20" data-toggle="modal" data-target="#authentication-options">Make your Lock!</a>
+      <% end  %>
+    </div>
+    <!-- <div class="visible-xs col-xs-6">
+    <a class="btn btn-primary btn-lg landing-action-item pull-right margin-top-20" data-toggle="modal" data-target="#authentication-options">Make your Lock!</a>
+  </div> -->
+</div>
+<div class="row">
+
+  <div class="col-md-6 col-xs-12 margin-top-20">
+    <img class="img-responsive img-rounded" src="<%= @pick.performance.team.logo %>" alt="">
+  </div>
+  <div class="col-md-6 col-xs-12 text-center">
+    <!-- <h1>Lock of Week <%= @pick.performance.game.week.position %>, <%= @pick.performance.team.name %> <%= @pick.performance.spread %></h1>
+    <h4><%= @game.away_team.name %> @ <%= @game.home_team.name %></h4> -->
+    <div class="game-box">
+      <%= render :template => "games/game_box", :locals => { game: @pick.performance.game, show_result: false, show_spread: false } %>
+    </div>
+
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <% if current_user %>
+      <a class="btn btn-primary btn-lg landing-action-item" href="/pick_latest">Make your Lock!</a>
+    <% else %>
+      <a class="btn btn-primary btn-lg landing-action-item" data-toggle="modal" data-target="#authentication-options">Make your Lock!</a>
+    <% end %>
+  </div>
+
+  <!-- /.col-md-8 -->
+
+  <!-- /.col-md-4 -->
+</div>
+
+
+
+<hr>
+
+<hr>
+
+<!-- /.row -->
+
+<!-- Content Row -->
+<div class="row">
+  <div class="col-md-4">
+    <h2>Heading 1</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe rem nisi accusamus error velit animi non ipsa placeat. Recusandae, suscipit, soluta quibusdam accusamus a veniam quaerat eveniet eligendi dolor consectetur.</p>
+    <a class="btn btn-default" href="#">More Info</a>
+  </div>
+  <!-- /.col-md-4 -->
+  <div class="col-md-4">
+    <h2>Heading 2</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe rem nisi accusamus error velit animi non ipsa placeat. Recusandae, suscipit, soluta quibusdam accusamus a veniam quaerat eveniet eligendi dolor consectetur.</p>
+    <a class="btn btn-default" href="#">More Info</a>
+  </div>
+  <!-- /.col-md-4 -->
+  <div class="col-md-4">
+    <h2>Heading 3</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe rem nisi accusamus error velit animi non ipsa placeat. Recusandae, suscipit, soluta quibusdam accusamus a veniam quaerat eveniet eligendi dolor consectetur.</p>
+    <a class="btn btn-default" href="#">More Info</a>
+  </div>
+  <!-- /.col-md-4 -->
+</div>
+<!-- /.row -->
+
+<%= render template: "layouts/footer" %>
+</div>
+<!-- /.container -->
+
+<!-- Modal -->
+<div id="authentication-options" class="modal fade text-center" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h2 class="modal-title">Sign In</h2>
+      </div>
+      <div class="modal-body">
+        <a href="/auth/facebook" title="Facebook" class="btn btn-facebook btn-lg"><i class="fa fa-facebook fa-fw"></i> Sign in with Facebook</a>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-default" data-dismiss="modal">Close</a>
+      </div>
+    </div>
+
+  </div>
+</div>

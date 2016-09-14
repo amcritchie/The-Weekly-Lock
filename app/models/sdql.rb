@@ -1,7 +1,7 @@
 class Sdql
   def self.weeks
-    # [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22]
-    [1,2,3,4,5,6,7,8]
+    [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22]
+    # [1,2,3,4,5,6,7,8]
   end
 
   def self.build_nfl_season(season)
@@ -77,13 +77,28 @@ class Sdql
     end
   end
 
-  def self.calculate_result(total, opponent_total)
+  def self.calculate_game_result(total, opponent_total)
     if total > opponent_total
       'win'
     elsif total < opponent_total
       'loss'
-    else
+    elsif total == opponent_total
       'tie'
+    else
+      nil
+    end
+  end
+  def self.calculate_spread_result(total, opponent_total, spread)
+    #  total - opponent_total + spread.split()[0].to_f
+    # byebug
+    if (total - opponent_total + spread) > 0
+      'win'
+    elsif (total - opponent_total + spread) < 0
+      'loss'
+    elsif (total - opponent_total + spread) == 0
+      'push'
+    else
+      nil
     end
   end
 
@@ -98,9 +113,10 @@ class Sdql
     q4 = html[11].split('>')[1].split('-')[0].to_i
     total = html[12].split('>')[2].split('-')[0].to_i
     opponent_total = html[12].split('>')[2].split('-')[1].to_i
+    spread = html[13].split('>')[1].split()[0].to_f
     ot = total - (q1 + q2 + q3 + q4)
 
-    result = calculate_result(total, opponent_total)
+    game_result = calculate_game_result(total, opponent_total)
     team = Team.find_by_sdql_id(team.gsub(/\s+/, ""))
 
     if @home_team
@@ -110,13 +126,15 @@ class Sdql
       puts '---'
       @game = Game.find_by(week_id: week.id, home_id: team.id)
       performance = @game.home_performance
-      performance.update(q1: q1, q2: q2, q3: q3, q4: q4, ot: ot, total: total, result: result, present_record: performance.new_record(result))
+      spread_result = calculate_spread_result(total, opponent_total, performance.spread)
+      performance.update(q1: q1, q2: q2, q3: q3, q4: q4, ot: ot, total: total, game_result: game_result, spread_result: spread_result, present_record: performance.new_record(game_result))
     else
       performance = @game.away_performance
-      performance.update(q1: q1, q2: q2, q3: q3, q4: q4, ot: ot, total: total, result: result, present_record: performance.new_record(result))
+      spread_result = calculate_spread_result(total, opponent_total, performance.spread)
+      performance.update(q1: q1, q2: q2, q3: q3, q4: q4, ot: ot, total: total, game_result: game_result, spread_result: spread_result, present_record: performance.new_record(game_result))
 
       puts "=" * 40
-      puts "Game updated - #{@game.id} - #{@game.away_team.name} @ #{@game.home_team.name} ---> #{@game.away_team.name} #{result}"
+      puts "Game updated - #{@game.id} - #{@game.away_team.name} @ #{@game.home_team.name} ---> #{@game.away_team.name} #{game_result}"
     end
     @home_team = !@home_team
   end

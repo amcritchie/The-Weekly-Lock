@@ -14,9 +14,16 @@
  *= require_self
  */
 
+ @import "colors"; // Color variables
+
 // Used to space body lower than the navbar.
 body{
   padding-top: 100px;
+}
+@media (max-width: 767px) {
+  body{
+    padding-top: 60px;
+  }
 }
 
 // Used to rise height of navbar so the navbar logo image fits perfectly.
@@ -60,23 +67,18 @@ body{
 //
 // }
 
-$white: #ffffff;
-$black: #00171F;
-$blue1: #003459;
-$blue2: #007EA7;
-$blue3: #00A8E8;
 
-// Secondary Grey Scheme
-$grey1: #5D5E5E;
-$grey2: #CDCCCC;
-
-// Extra colors for buttons
-$red: #e84900;
-$green: #12B547;
-
-
-.remove-decoration{
+// This is used on the land page to remove the underlines in pervious pickes.
+.remove-decoration:hover{
   text-decoration: none;
+}
+
+.landing-action-item{
+  font-size: 24px;
+}
+
+.inline {
+  display: inline-block;
 }
 
 .pick_thumb {
@@ -134,6 +136,10 @@ $green: #12B547;
     border: 1px solid $blue3;
   }
 
+}
+
+.pointer {
+  cursor: pointer;
 }
 
 // .winner{

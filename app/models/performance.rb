@@ -1,31 +1,42 @@
 class Performance < ActiveRecord::Base
+  include ActionView::Helpers
+
   belongs_to :game
   belongs_to :team
   has_many :pick
 
-  def record_after_performance_xz
-    record_x = self.present_record.split
-    if self.result.nil?
-      "Performance doesn't have result" * 1000
-      puts "Performance.id: #{self.id}"
-      "Performance doesn't have result" * 100
-      return false
-      # return "Performance not finished - icode:S001"
-    end
-    # byebug if self.id == 33
-    if self.result == 'win'
-      record_x[0] = record_x[0].to_i + 1
-    elsif self.result =='loss'
-      record_x[1] = record_x[1].to_i + 1
-    else
-      if record_x[2].nil?
-        record_x[2] = 1
-      else
-        record_x[2] = record_x[2].to_i + 1
-      end
-    end
-    record_x.join(' ')
+
+  def is_a_pick
+    # self.
+    # session[:user_id]
+    # admin_user
+    # current_user
+    nil
   end
+
+  # def record_after_performance_xz
+  #   record_x = self.present_record.split
+  #   if self.result.nil?
+  #     "Performance doesn't have result" * 1000
+  #     puts "Performance.id: #{self.id}"
+  #     "Performance doesn't have result" * 100
+  #     return false
+  #     # return "Performance not finished - icode:S001"
+  #   end
+  #   # byebug if self.id == 33
+  #   if self.result == 'win'
+  #     record_x[0] = record_x[0].to_i + 1
+  #   elsif self.result =='loss'
+  #     record_x[1] = record_x[1].to_i + 1
+  #   else
+  #     if record_x[2].nil?
+  #       record_x[2] = 1
+  #     else
+  #       record_x[2] = record_x[2].to_i + 1
+  #     end
+  #   end
+  #   record_x.join(' ')
+  # end
 
   def last_performance
     c_week = self.game.week

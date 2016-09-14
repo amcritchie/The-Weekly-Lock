@@ -1,10 +1,20 @@
+@import "colors"; // Color variables
+
 .game-box{
+  text-align: center;
   position: relative;
+
+  .bottom-text{
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+  }
 
   .game-at {
     top: 30px;
     width: 100%;
-    position: absolute;
+    position: relative;
     text-align: center;
     pointer-events: none;
   }
@@ -12,8 +22,7 @@
   .game-select-performance {
     width: 50%;
     height: 100%;
-    float: right;
-    cursor: pointer;
+    float: left;
 
     .game-logo {
       height: 32px;
@@ -31,4 +40,24 @@
       }
     }
   }
+  .result {
+    display: inline;
+    padding: 5px 20px;
+    border-radius: 10px;
+    color: white;
+    font-size: 14px;
+  }
+  .result.win {
+    background-color: $green;
+  }
+  .result.loss {
+    background-color: $red;
+  }
+  .result.push {
+    background-color: orange;
+  }
+}
+
+.game-box.pick{
+  border: 3px solid green;
 }
