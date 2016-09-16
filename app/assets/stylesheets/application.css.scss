@@ -42,6 +42,10 @@ body{
 .margin-top-20{
   margin-top: 20px;
 }
+
+.duration-500 {
+  transition-duration: 500ms;
+}
 //
 // .box:hover{
 //   background: blue; /* make this whatever you want */
@@ -140,6 +144,13 @@ body{
 
 .pointer {
   cursor: pointer;
+}
+
+.float-bottom {
+  width: 100%;
+  bottom: 0;
+  position: absolute;
+  padding: 4px;
 }
 
 // .winner{

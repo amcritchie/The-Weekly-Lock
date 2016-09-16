@@ -1,78 +1,24 @@
 <div class="container">
-
-  <div class="hidden">
-    <div id="season" data-year="2015"></div>
-  </div>
-
-  <div class="container">
-
-    <div class="input-group"> <span class="input-group-addon">Filter</span>
-      <input id="filter" type="text" class="form-control" placeholder="Type here...">
-    </div>
-
-    <ul class="flex-container searchable">
-      <% @week.games.each do |game| %>
-      <li class="flex-item game-box <%= current_user && current_user.games.find_by_id(game.id) ? 'pick' : '' %>">
-        <%= render :template => "games/game_box", :locals => { :game => game, show_result: true, show_spread: true } %>
-
-        <a class="hidden" href="/admin/nfl/<%= @week.season.year %>/<%= @week.position %>/<%= game.slug %>" target="_blank" class="background">
-          Game
-        </a>
-      </li>
-      <% end %>
-    </ul>
-
-    <h2>NFL <%= @week.season.year %> Season, Week <%= @week.position %></h2>
-    <a href="/admin/nfl/<%= @week.season.year %>"><%= @week.season.year %> season</a>
-    <table class="table table-hover table-condensed">
-      <thead>
-        <tr>
-          <th>Game</th>
-          <th>Away</th>
-          <th>Home</th>
-        </tr>
-      </thead>
-      <tbody class="searchable">
-        <% @week.games.each do |game| %>
-        <tr>
-          <td><a href="/admin/nfl/<%= @week.season.year %>/<%= @week.position %>/<%= game.slug %>"><%= game.away_team.name %> @ <%= game.home_team.name %> </a></td>
-          <td><%= game.away_team.name %> (<%= game.away_performance.spread %>)</td>
-          <td><%= game.home_team.name %> (<%= game.home_performance.spread %>)</td>
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
-
+  <!-- Add actions -->
   <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
-      <h4>Actions</h4>
+      <!-- <h4>Actions</h4> -->
       <a id="build_seasons_matchups" class="btn btn-success">Build Matchups</a>
       <a id="build_seasons_results" class="btn btn-success">Build Results</a>
-      <!-- <a id="build_seasons_results" class="btn btn-primary">Build Results</a> -->
     </div>
+    <br><br>
   </div>
-
-</div>
-
-<!-- Modal -->
-<div id="game-select" class="modal fade text-center" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h2 class="modal-title">Modal Header</h2>
-      </div>
-      <div class="modal-body">
-        <p>Some text in the modal.</p>
-      </div>
-      <div class="modal-footer">
-        <a id="confirm-pick" class="btn btn-success" data-dismiss="modal">Pick!</a>
-        <a class="btn btn-default" data-dismiss="modal">Close</a>
-      </div>
-    </div>
-
+  <!-- Game filter -->
+  <div class="input-group"> <span class="input-group-addon">Filter</span>
+    <input id="filter" type="text" class="form-control" placeholder="Type here...">
   </div>
+  <!-- Matchups -->
+  <ul class="flex-container searchable">
+    <% @week.games.each do |game| %>
+    <li class="flex-item game-box">
+      <%= render :template => "games/game_box", :locals => { :game => game, show_result: true, show_spread: true, show_pick: true } %>
+    </li>
+    <% end %>
+    <%= render :template => "games/performance_modal" %>
+  </ul>
 </div>

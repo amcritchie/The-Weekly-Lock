@@ -1,21 +1,15 @@
 <div class="container">
-
-  <div class="hidden">
-    <div id="season" data-year="2015"></div>
+  <!-- Game filter -->
+  <div class="input-group"> <span class="input-group-addon">Filter</span>
+    <input id="filter" type="text" class="form-control" placeholder="Type here...">
   </div>
-
-  <div class="container">
-
-    <div class="input-group"> <span class="input-group-addon">Filter</span>
-      <input id="filter" type="text" class="form-control" placeholder="Type here...">
-    </div>
-
-    <ul class="flex-container searchable">
-      <% @week.games.each do |game| %>
-      <li class="flex-item game-box">
-        <%= render :template => "games/game_box", :locals => { :game => game, show_result: false, show_spread: true } %>
-      </li>
-      <% end %>
-    </ul>
-  </div>
+  <!-- Matchups -->
+  <ul class="flex-container searchable">
+    <% @week.games.each do |game| %>
+    <li class="flex-item game-box">
+      <%= render :template => "games/game_box", :locals => { :game => game, show_result: false, show_spread: true, show_pick: true } %>
+    </li>
+    <% end %>
+    <%= render :template => "games/performance_modal" %>
+  </ul>
 </div>
