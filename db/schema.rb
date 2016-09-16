@@ -66,6 +66,8 @@ ActiveRecord::Schema.define(version: 20160904023225) do
     t.string  "logo"
     t.string  "dark_color"
     t.string  "light_color"
+    t.string  "primary_color"
+    t.string  "secondary_color"
     t.string  "sdql_id"
     t.integer "sport_id"
   end
