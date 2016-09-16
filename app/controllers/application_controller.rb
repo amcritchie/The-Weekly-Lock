@@ -4,10 +4,20 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def admin_user
-    @admin_user ||= User.last
+    @admin_user ||= User.first
   end
+
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
-  helper_method :admin_user, :current_user
+
+  def admin_users_pick(performance)
+    admin_user.performances.find_by_id(performance.id) if admin_user
+  end
+
+  def current_users_pick(performance)
+    current_user.performances.find_by_id(performance.id) if current_user
+  end
+
+  helper_method :admin_user, :current_user, :admin_users_pick, :current_users_pick
 end

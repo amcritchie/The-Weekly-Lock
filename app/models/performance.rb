@@ -6,12 +6,14 @@ class Performance < ActiveRecord::Base
   has_many :pick
 
 
-  def is_a_pick
-    # self.
-    # session[:user_id]
-    # admin_user
-    # current_user
-    nil
+  def task
+    if self.spread == 0
+      "To win"
+    elsif self.spread < 0
+      "To win by #{ opposition.spread } point#{'s' if opposition.spread.abs > 1}"
+    else
+      "To loss by less than #{ self.spread } point#{'s' if self.spread.abs > 1}"
+    end
   end
 
   # def record_after_performance_xz

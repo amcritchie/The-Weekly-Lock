@@ -9,15 +9,19 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/">
-        <h4>The Weekly <br>Lock <i class="fa fa-lock"></i></h4>
+      <a class="navbar-brand duration-500" href="/">
+        <h4 style="margin-top: 12px; margin-bottom: 0;">The Weekly Lock <i class="fa fa-lock"></i></h4>
+        <h6 style="margin-top: 0;">Every Thursday</h6>
         <!-- <img src="http://placehold.it/150x50&text=Logo" alt=""> -->
       </a>
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li>
+        <!-- <li>
+          <a href="#">Contact</a>
+        </li> -->
+        <!-- <li>
           <a href="#">About</a>
         </li>
         <li>
@@ -28,15 +32,36 @@
         </li>
         <li>
           <a href="/">Latest Pick</a>
+        </li> -->
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <!-- <li><a href="#">Link</a></li> -->
+         <li>
+             <% if current_user %>
+                <%= link_to "#{current_user.name} | Sign out", signout_path, id: "sign_out", class: "duration-500" %>
+              <% else %>
+                <a href="/auth/facebook" title="Facebook" class="btn btn-facebook btn-lg duration-500"><i class="fa fa-facebook fa-fw"></i> Sign In</a>
+                <% end %>
+            </li>
+        <li class="dropdown hidden">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
         </li>
       </ul>
+
       <p class="navbar-text navbar-right">
-        <% if current_user %>
+        <% if current_user && false %>
         <strong><%= current_user.name %></strong> |
         <%= link_to "Sign out", signout_path, id: "sign_out" %>
-        <% else %>
+        <% elsif false %>
         <a href="/auth/facebook" title="Facebook" class="btn btn-facebook btn-lg"><i class="fa fa-facebook fa-fw"></i> Sign In</a>
-        <!-- <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_id" %> -->
         <% end %>
       </p>
     </div>

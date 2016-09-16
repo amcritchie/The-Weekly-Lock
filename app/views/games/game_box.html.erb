@@ -5,49 +5,38 @@
     <%= game.away_team.name %><br>
     <%= game.away_performance.present_record.split.join(' - ') %>
     <% if show_spread %>
-    <hr>
-    <%= game.away_performance.spread %>
+      <hr>
+      <%= game.away_performance.spread %>
     <% end %>
     <% if game.away_performance.total && show_result %>
-    <hr>
-    <p class="result <%= game.away_performance.spread_result %>">
-      <%= game.away_performance.total %>
-    </p>
+      <hr>
+      <p class="result <%= game.away_performance.spread_result %>">
+        <%= game.away_performance.total %>
+      </p>
     <% end %>
   </h6>
 
-  <% game.away_performance.is_a_pick %>
-  <div class="gradient win game-performance-gradient game-home-gradient">
+  <% if show_pick && (admin_users_pick(game.away_performance) || current_users_pick(game.away_performance)) %>
+  <div class="game-performance-gradient" style="text-shadow: 2px 2px 8px <%= game.away_performance.team.dark_color %>; box-shadow: 0px 0px 10px <%= game.away_performance.team.secondary_color %>; color: white; background: linear-gradient(to bottom, transparent, <%= game.away_performance.team.primary_color %>);">
     <h5 class="bottom-text">
-      <% if current_user && current_user.picks.find_by_performance_id(game.away_performance.id) %>
-        Your Lock
-      <% elsif User.first && User.first.picks.find_by_performance_id(game.away_performance.id)  %>
-        Weekly Lock
+      <% if current_users_pick(game.away_performance) %>
+      <input class="hidden your-lock" value="">
+      Your Lock
+      <% end %>
+      <% if admin_users_pick(game.away_performance) %>
+      Weekly Lock
       <% end %>
     </h5>
-    <!-- <p class="readable-descripton">
-      <% if game.home_performance.spread == 0 %>
-      To beat the <%= game.away_team.location %> <%= game.away_team.name %>.
-      <% elsif game.home_performance.spread < 0 %>
-      To beat the <%= game.away_team.location %> <%= game.away_team.name %> by <%= game.away_performance.spread %> point<%= 's' if game.away_performance.spread.to_int != 1 %>.
-      <% else %>
-      To hold the <%= game.away_team.location %> <%= game.away_team.name %> to <%= game.home_performance.spread %> point<%= 's' if game.home_performance.spread.to_int != 1 %>.
-      <% end %>
-    </p> -->
   </div>
+  <% end %>
 
-
-  <div class="gradient game-performance-gradient game-home-gradient">
-    <h5><%= game.home_team.location %><br><%= game.home_team.name %></h5>
-    <p class="readable-descripton">
-      <% if game.home_performance.spread == 0 %>
-      To beat the <%= game.away_team.location %> <%= game.away_team.name %>.
-      <% elsif game.home_performance.spread < 0 %>
-      To beat the <%= game.away_team.location %> <%= game.away_team.name %> by <%= game.away_performance.spread %> point<%= 's' if game.away_performance.spread.to_int != 1 %>.
-      <% else %>
-      To hold the <%= game.away_team.location %> <%= game.away_team.name %> to <%= game.home_performance.spread %> point<%= 's' if game.home_performance.spread.to_int != 1 %>.
-      <% end %>
-    </p>
+  <div class="gradient game-performance-gradient" style="text-shadow: 2px 2px 8px <%= game.away_performance.team.dark_color %>; box-shadow: 0px 0px 10px <%= game.away_performance.team.secondary_color %>; color: white; background: linear-gradient(to bottom, transparent, <%= game.away_performance.team.primary_color %>);">
+    <div class="float-bottom">
+      <h5><%= game.away_team.location %><br><%= game.away_team.name %></h5>
+      <p class="readable-descripton">
+        <%= game.away_performance.task %>
+      </p>
+    </div>
   </div>
 </div>
 
@@ -69,17 +58,26 @@
     <% end %>
   </h6>
 
-  <div class="gradient  game-performance-gradient game-away-gradient">
-    <h5><%= game.away_team.location %><br><%= game.away_team.name %></h5>
-    <p class="readable-descripton">
-      <% if game.away_performance.spread == 0 %>
-      To beat the <%= game.home_team.location %> <%= game.home_team.name %>.
-      <% elsif game.away_performance.spread < 0 %>
-      To beat the <%= game.home_team.location %> <%= game.home_team.name %> by <%= game.home_performance.spread %> point<%= 's' if game.home_performance.spread.to_int != 1 %>.
-      <% else %>
-      To hold the <%= game.home_team.location %> <%= game.home_team.name %> to <%= game.away_performance.spread %> point<%= 's' if game.away_performance.spread.to_int != 1 %>.
+  <% if show_pick && (admin_users_pick(game.home_performance) || current_users_pick(game.home_performance)) %>
+  <div class="game-performance-gradient" style="text-shadow: 2px 2px 8px <%= game.away_performance.team.dark_color %>; text-shadow: 0px 0px 10px <%= game.home_performance.team.dark_color %>; box-shadow: 0px 0px 10px <%= game.home_performance.team.secondary_color %>; color: white; background: linear-gradient(to bottom, transparent, <%= game.home_performance.team.primary_color %>);">
+    <h5 class="bottom-text">
+      <% if current_users_pick(game.home_performance) %>
+        Your Lock
+        <input class="hidden your-lock" value="">
       <% end %>
-    </p>
+      <% if admin_users_pick(game.home_performance) %>
+      Weekly Lock
+      <% end %>
+    </h5>
+  </div>
+  <% end %>
+
+  <div class="gradient game-performance-gradient" style="text-shadow: 2px 2px 8px <%= game.home_performance.team.dark_color %>; box-shadow: 0px 0px 10px <%= game.home_performance.team.secondary_color %>; color: white; background: linear-gradient(to bottom, transparent, <%= game.home_performance.team.primary_color %>);">
+    <div class="float-bottom">
+      <h5><%= game.home_team.location %><br><%= game.home_team.name %></h5>
+      <p class="readable-descripton">
+        <%= game.home_performance.task %>
+      </p>
+    </div>
   </div>
 </div>
-<!-- </div> -->
