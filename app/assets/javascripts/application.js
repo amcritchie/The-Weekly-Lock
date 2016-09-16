@@ -16,9 +16,9 @@
 //= require turbolinks
 //= require_tree .
 
-// Logic for filter.
-$(document).ready(function () {
-  (function ($) {
+var matchups = {
+  init_filter: function() {
+    // Matchup filter.
     $('#filter').keyup(function () {
       var rex = new RegExp($(this).val(), 'i');
       $('.searchable li').hide();
@@ -27,13 +27,10 @@ $(document).ready(function () {
       }).show();
 
     })
-  }(jQuery));
-});
-
-var pick = {
+  },
   init_listeners: function() {
-    $('.game-select-away').click(pick.click)
-    $('.game-select-home').click(pick.click)
+    // Clear and reset performance listeners.
+    $('.game-select-performance').off('click').on('click', matchups.click)
   },
   click: function() {
     // Performance id.
@@ -62,7 +59,7 @@ var pick = {
       $('#confirm-pick').html('Pick ' + $(this).data('name') + ' (' + $(this).data('spread') + ')');
     }
 
-    pick.confirm_pick(performance_id)
+    matchups.confirm_pick(performance_id)
   },
   confirm_pick: function(performance_id){
     $('#confirm-pick').off('click').on('click', function () {

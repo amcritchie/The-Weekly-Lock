@@ -1,0 +1,83 @@
+<div class="game-at">@</div>
+<div class="game-select-performance game-select-away pointer" data-performance-id="<%= game.away_performance.id %>" data-name="<%= game.away_team.name %>" data-location="<%= game.away_team.location %>" data-spread="<%= game.away_performance.spread %>" data-logo="<%= game.away_team.logo %>" data-toggle="modal" data-target="#game-select">
+  <img class="game-logo" src="<%= game.away_team.logo %>" alt="Description" height="32">
+  <h6>
+    <%= game.away_team.name %><br>
+    <%= game.away_performance.present_record.split.join(' - ') %>
+    <% if show_spread %>
+      <hr>
+      <%= game.away_performance.spread %>
+    <% end %>
+    <% if game.away_performance.total && show_result %>
+      <hr>
+      <p class="result <%= game.away_performance.spread_result %>">
+        <%= game.away_performance.total %>
+      </p>
+    <% end %>
+  </h6>
+
+  <% if show_pick && (admin_users_pick(game.away_performance) || current_users_pick(game.away_performance)) %>
+  <div class="game-performance-gradient" style="text-shadow: 2px 2px 8px <%= game.away_performance.team.dark_color %>; box-shadow: 0px 0px 10px <%= game.away_performance.team.secondary_color %>; color: white; background: linear-gradient(to bottom, transparent, <%= game.away_performance.team.primary_color %>);">
+    <h5 class="bottom-text">
+      <% if current_users_pick(game.away_performance) %>
+      <input class="hidden your-lock" value="">
+      Your Lock
+      <% end %>
+      <% if admin_users_pick(game.away_performance) %>
+      Weekly Lock
+      <% end %>
+    </h5>
+  </div>
+  <% end %>
+
+  <div class="gradient game-performance-gradient" style="text-shadow: 2px 2px 8px <%= game.away_performance.team.dark_color %>; box-shadow: 0px 0px 10px <%= game.away_performance.team.secondary_color %>; color: white; background: linear-gradient(to bottom, transparent, <%= game.away_performance.team.primary_color %>);">
+    <div class="float-bottom">
+      <h5><%= game.away_team.location %><br><%= game.away_team.name %></h5>
+      <p class="readable-descripton">
+        <%= game.away_performance.task %>
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="game-select-performance game-select-home pointer" data-performance-id="<%= game.home_performance.id %>" data-name="<%= game.home_team.name %>" data-location="<%= game.home_team.location %>" data-spread="<%= game.home_performance.spread %>" data-logo="<%= game.home_team.logo %>" data-toggle="modal" data-target="#game-select">
+  <img class="game-logo" src="<%= game.home_team.logo %>" alt="Description" height="32">
+  <h6>
+    <%= game.home_team.name %><br>
+    <%= game.home_performance.present_record.split.join(' - ') %>
+    <% if show_spread %>
+
+    <hr>
+    <%= game.home_performance.spread %>
+    <% end %>
+    <% if game.home_performance.total && show_result%>
+    <hr>
+    <div class="result <%= game.home_performance.spread_result %>">
+      <%= game.home_performance.total %>
+    </div>
+    <% end %>
+  </h6>
+
+  <% if show_pick && (admin_users_pick(game.home_performance) || current_users_pick(game.home_performance)) %>
+  <div class="game-performance-gradient" style="text-shadow: 2px 2px 8px <%= game.away_performance.team.dark_color %>; text-shadow: 0px 0px 10px <%= game.home_performance.team.dark_color %>; box-shadow: 0px 0px 10px <%= game.home_performance.team.secondary_color %>; color: white; background: linear-gradient(to bottom, transparent, <%= game.home_performance.team.primary_color %>);">
+    <h5 class="bottom-text">
+      <% if current_users_pick(game.home_performance) %>
+        Your Lock
+        <input class="hidden your-lock" value="">
+      <% end %>
+      <% if admin_users_pick(game.home_performance) %>
+      Weekly Lock
+      <% end %>
+    </h5>
+  </div>
+  <% end %>
+
+  <div class="gradient game-performance-gradient" style="text-shadow: 2px 2px 8px <%= game.home_performance.team.dark_color %>; box-shadow: 0px 0px 10px <%= game.home_performance.team.secondary_color %>; color: white; background: linear-gradient(to bottom, transparent, <%= game.home_performance.team.primary_color %>);">
+    <div class="float-bottom">
+      <h5><%= game.home_team.location %><br><%= game.home_team.name %></h5>
+      <p class="readable-descripton">
+        <%= game.home_performance.task %>
+      </p>
+    </div>
+  </div>
+</div>

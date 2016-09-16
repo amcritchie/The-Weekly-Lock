@@ -8,17 +8,25 @@
     </div>
     <br><br>
   </div>
-  <!-- Game filter -->
-  <div class="input-group"> <span class="input-group-addon">Filter</span>
-    <input id="filter" type="text" class="form-control" placeholder="Type here...">
+  <div class="row">
+    <!-- Page Title -->
+    <div class="col-md-7 col-lg-6">
+      <h1 style="margin-top: 10px;">Select your lock of the week.</h1>
+    </div>
+    <!-- Matchups filter -->
+    <div class="col-xs-12 col-md-5 col-lg-6" style="margin-top: 12px; margin-bottom: 10px;">
+      <%= render :template => "matchups/filter" %>
+    </div>
   </div>
   <!-- Matchups -->
-  <ul class="flex-container searchable">
-    <% @week.games.each do |game| %>
-    <li class="flex-item game-box">
-      <%= render :template => "games/game_box", :locals => { :game => game, show_result: true, show_spread: true, show_pick: true } %>
-    </li>
-    <% end %>
-    <%= render :template => "games/performance_modal" %>
-  </ul>
+  <div class="row">
+    <ul class="flex-container searchable">
+      <% @week.games.each do |game| %>
+      <li class="flex-item game-box">
+        <%= render :template => "matchups/matchup", :locals => { :game => game, show_result: true, show_spread: true, show_pick: true } %>
+      </li>
+      <% end %>
+      <%= render :template => "matchups/confirm_pick" %>
+    </ul>
+  </div>
 </div>
