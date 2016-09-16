@@ -44,9 +44,9 @@
   <div class="row">
     <div class="col-xs-12 visible-xs visible-sm">
       <% if current_user %>
-      <a class="col-xs-12 btn btn-primary btn-lg duration-500 " href="/pick_latest">Make your Lock!</a>
+      <a class="col-xs-12 btn btn-primary btn-lg duration-500" href="/pick_latest">Make your Lock!</a>
       <% else %>
-      <a class="col-xs-12 btn btn-primary btn-lg duration-500 " data-toggle="modal" data-target="#authentication-options">Make your Lock!</a>
+      <a class="col-xs-12 btn btn-primary btn-lg duration-500" data-toggle="modal" data-target="#authentication-options">Make your Lock!</a>
       <% end %>
       <br><br>
       <h1>Lock of Week <%= @pick.performance.game.week.position %>, <%= @pick.performance.team.name %> <%= @pick.performance.spread %></h1>
@@ -110,7 +110,7 @@
         <h2 class="modal-title">Sign In</h2>
       </div>
       <div class="modal-body">
-        <a href="/auth/facebook" title="Facebook" class="btn btn-facebook btn-lg"><i class="fa fa-facebook fa-fw"></i> Sign in with Facebook</a>
+        <a href="/auth/facebook" title="Facebook" class="btn btn-facebook btn-lg duration-500"><i class="fa fa-facebook fa-fw"></i> Sign in with Facebook</a>
       </div>
       <div class="modal-footer">
         <a class="btn btn-default" data-dismiss="modal">Close</a>
