@@ -59,6 +59,10 @@
       <img class="img-responsive img-rounded" src="<%= @pick.performance.team.logo %>" alt="">
     </div>
     <div class="col-md-6 col-xs-12 text-center">
+      <div class="visible-md visible-lg text-left">
+        <h1>Lock of Week <%= @pick.performance.game.week.position %>, <%= @pick.performance.team.name %> <%= @pick.performance.spread %></h1>
+        <br>
+      </div>
       <div class="flex-item game-box" style="width: 100%; height: 100px; margin-left: 0;">
         <%= render :template => "games/game_box", :locals => { game: @pick.performance.game, show_result: false, show_spread: false, show_pick: false } %>
       </div>
