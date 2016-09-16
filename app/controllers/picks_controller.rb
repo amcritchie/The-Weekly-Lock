@@ -1,21 +1,11 @@
 class PicksController < ApplicationController
   def public
+
     @pick = Pick.where(public_lock: true).last
 
-    # redirect_to 'https://www.facebook.com/'
     return redirect_to "/admin" if !@pick
 
-
-    puts 'https://www.facebook.com/' if !@pick
-
-    puts '@pick'*100
-
-    puts @pick
-    puts '@pick'*100
-    puts !@pick
-    puts '@pick'*100
     @season = @pick.game.week.season
-
 
     if params[:sport]
       sport = Sport.find_by_slug(params[:sport])
